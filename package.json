@@ -1,0 +1,32 @@
+{
+  "name": "quadro-de-avisos",
+  "version": "1.0.0",
+  "description": "Projeto realizado em aula como o professor Fernando Bartholomeu Reis da Silva Cunha, o objetivo do Software é organizar os avisos de aula de uma classe, sala ou escola.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matabarata/quadro-de-avisos.git"
+  },
+  "keywords": [
+    "billboard"
+  ],
+  "author": "Lucas Anjos (mata_barata)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matabarata/quadro-de-avisos/issues"
+  },
+  "homepage": "https://github.com/matabarata/quadro-de-avisos#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "expres": "0.0.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
