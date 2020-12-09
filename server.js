@@ -20,6 +20,11 @@ app.use(express.static('public'))
 
 //---------------------------------------------------------//
 
+//configurando o moment
+app.locals.moment = require('moment')
+
+//---------------------------------------------------------//
+
 //configurando body-parser
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())

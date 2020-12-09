@@ -6,8 +6,9 @@ router.get("/", (req, res) =>{
   res.send("Página Inicial")
 })
 
-router.get("/avisos", (req, res) =>{
-  res.send("Página de Avisos Cadastrados")
+router.get("/avisos", async (req, res) =>{
+  const avisos = await Avisos.selecionarTodos()
+  res.render('avisos', {avisos})
 })
 
 router.get("/avisos/novo", (req, res) =>{

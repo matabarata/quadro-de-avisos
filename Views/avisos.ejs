@@ -1,0 +1,86 @@
+<!-- Chama o head do outro arquivo qeu está em partials -->
+<%- include('./partials/head') %>
+
+<body>
+
+  <%- include ('./partials/navbar') %>
+
+  <div class="container">
+
+    <br><br>
+
+    <div class="card shadow">
+
+      <div class="card-header bg-purple text-white">
+
+        <h2 class="float-left">
+          <span class="material-icons">
+            collections_bookmark
+          </span>
+          Avisos Cadastrados
+        </h2>
+
+        <a href="/avisos/novo" class="btn btn-outline-light btn-lg float-right">
+          <span class="material-icons">
+            campaign
+          </span>
+          Novo Aviso
+        </a>
+
+      </div>
+
+      <div class="card-body p-5">
+
+        <div class="container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Data</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <% if (avisos.length < 1) { %>
+                <tr>
+                  <td colspan="4" class="text-center">
+                    <h3>
+                      Não há aviso cadastrado
+                    </h3>
+                  </td>
+                </tr>
+              <% } %>
+
+              <% avisos.forEach(aviso => { %>
+               
+                <tr>
+                  <th scope="row"> <%= aviso.ID_avisos %> </th>
+                  <td> <%= aviso.titulo %> </td>
+                  <td> <%= moment(aviso.data).format('DD/MM/YYYY') %> </td>
+                  <td>
+                    <button class="btn btn-secondary">Excluir</button>
+                    <button class="btn btn-primary">Editar</button>
+                  </td>
+                </tr>
+
+              <% }) %>
+
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Inclui os scripts do bootstrap que estão em outro arquivo no partials -->
+    <%- include('./partials/scripts_import') %>
+  </div>
+
+</body>
+
+</html>
