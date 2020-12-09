@@ -1,15 +1,98 @@
 <!-- Chama o head do outro arquivo qeu está em partials -->
 <%- include('./partials/head') %> 
   <body>
-    <h1 class="alert alert-primary">
-      <span class="material-icons">
-        campaign
-      </span>
-      Formulario de Cadastro De Avisos
-    </h1>
 
-    <!-- Inclui os scripts do bootstrap que estão em outro arquivo no partials -->
-    <%- include('./partials/scripts_import') %> 
+    <%- include ('./partials/navbar') %>
+    
+    <div class="container">
+      
+      <br><br>
+
+      <a href="#">
+        <span class="material-icons" style="font-size:50px; color:#673ab7">
+          arrow_back
+        </span>
+      </a>
+      
+      <% if (typeof msg !== 'undefined') { %>
+  
+        <% if (msg.tipo === 'sucesso') { %>
+          <div class="alert alert-success alert-dismissible fade show p-4" role="alert">
+            <strong>
+              <span class="material-icons">
+              done
+              </span>
+              <%= msg.corpo %>
+            </strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      
+        <% } %>
+          
+        <% if (msg.tipo === 'erro') { %>
+          <div class="alert alert-danger alert-dismissible fade show p-4" role="alert">
+            <strong><span class="material-icons">
+              close
+              </span>
+              <%= msg.corpo %>
+            </strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+        <% } %>
+  
+      <% } %>
+
+
+  <div class="card shadow">
+  
+    <div class="card-header bg-purple text-white">
+      <h2>
+        <span class="material-icons">
+          campaign
+        </span>
+        Novo Aviso
+      </h2>
+    </div>
+  
+    <div class="card-body p-5">
+  
+      <div class="container">
+        <form action="/avisos/novo" method="POST">
+          <div class="form-group">
+            <label for="titulo">Titulo</label>
+            <input id="titulo" name="titulo" type="text" class="form-control" required placeholder="Ex: Prova de PWII">
+          </div>
+          <div class="form-group">
+            <label for="data">Data</label>
+            <input id="data" name="data" type="date" class="form-control"required>
+          </div>
+          <div class="form-group">
+            <label for="mensagem">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" cols="40" rows="5" class="form-control" required placeholder="Digite aqui o aviso completo..."></textarea>
+          </div>
+          <div class="form-group text-right">
+            <button name="submit" type="submit" class="btn btn-secondary">Limpar</button>
+            <button name="submit" type="submit" class="btn btn-primary">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  
+  
+  <!-- Inclui os scripts do bootstrap que estão em outro arquivo no partials -->
+  <%- include('./partials/scripts_import') %>
+  </div>
+  
+  </div>
 
   </body>
 </html>
