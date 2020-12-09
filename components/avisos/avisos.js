@@ -31,6 +31,35 @@ function selecionarTodos(){
     })
 }
 
+/**
+ * Seleciona um único aviso
+ * @param {int} id ID do aviso
+ * @return {Object} Objeto com o aviso selecionado 
+ */
+function selecionarAviso(id){ 
+  return db.select('*').from('avisos').where('ID_avisos', id).first()
+    .then(aviso => {return aviso})
+    .catch(erro => {
+      return { tipo: "erro", corpo: "Erro: " + erro }
+  })
+}
+
+/**
+ * Alterar um aviso no banco de dados
+ * @param {object} aviso O aviso deve estar no seguinte formato: 
+ * {titulo: <string>, data: <string>, mensagem: <string>}
+ * @param {int} id Parametro id usado para encontrar o aviso
+ * @returns {object} Mensagem de sucesso ou de erro
+ */
+function editar(aviso, id){
+  return db('avisos').where('ID_avisos', id).update(aviso)
+    .then( _ => {
+      return { tipo: "sucesso", corpo: "Aviso alterado com sucesso!" }
+    })
+    .catch(erro => {
+      return { tipo: "erro", corpo: "Erro: " + erro }
+    })
+}
 
 /**
  * Função que exclui um aviso do BD
@@ -41,4 +70,4 @@ function excluir(id) {
 }
 
 
-module.exports = {salvar, selecionarTodos, excluir}
+module.exports = {salvar, selecionarTodos, selecionarAviso, excluir, editar}

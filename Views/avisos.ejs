@@ -35,7 +35,7 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
+                <th scope="col">ID</th>
                 <th scope="col">Título</th>
                 <th scope="col">Data</th>
                 <th scope="col">Ações</th>
@@ -60,8 +60,8 @@
                 <td> <%= aviso.titulo %> </td>
                 <td> <%= moment(aviso.data).format('DD/MM/YYYY') %> </td>
                 <td>
-                  <button class="btn btn-secondary" data-toggle="modal" data-target="#excluirModalCenter" onClick="excluir(event,'<%= aviso.ID_avisos %>')">Excluir</button>
-                  <button class="btn btn-primary">Editar</button>
+                  <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#excluirModalCenter" onClick="excluir(event,'<%= aviso.ID_avisos %>')">Excluir</button>
+                  <a href="/avisos/editar/<%= aviso.ID_avisos %>" class="btn btn-primary">Editar</a>
                 </td>
               </tr>
 

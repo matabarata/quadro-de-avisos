@@ -8,6 +8,7 @@ router.get("/", (req, res) =>{
 
 router.get("/avisos", async (req, res) =>{
   const avisos = await Avisos.selecionarTodos()
+
   res.render('avisos', {avisos})
 })
 
@@ -16,14 +17,11 @@ router.get("/avisos/novo", (req, res) =>{
 
 })
 
-router.post("/avisos/novo", async (req, res)=>{
-  const titulo = req.body.titulo
-  const data = req.body.data
-  const mensagem = req.body.mensagem
+router.get("/avisos/editar/:id", async(req, res) =>{
+  const id = req.params.id
+  const aviso = await Avisos.selecionarAviso(id)
 
-  const msg = await Avisos.salvar({titulo,data,mensagem})
-  res.render('formulario_avisos',{msg})
-
+  res.render('formulario_avisos', {aviso})
 })
 
 router.get('/avisos/excluir/:id', async (req, res) =>{
@@ -31,5 +29,51 @@ router.get('/avisos/excluir/:id', async (req, res) =>{
   await Avisos.excluir(id)
   res.redirect('/avisos')
 })
+
+router.post("/avisos/novo", async (req, res)=>{
+  const titulo = req.body.titulo
+  const data = req.body.data
+  const mensagem = req.body.mensagem
+  const submit = req.body.submit
+
+  if(submit == "cadastrar"){
+    const msg = await Avisos.salvar({titulo,data,mensagem})
+    res.render('formulario_avisos',{msg})  
+  }
+
+  else if(submit == "limpar"){
+    res.render('formulario_avisos')
+  }
+
+})
+
+router.post("/avisos/editar/:id", async (req, res) =>{
+  const id = req.body.id
+  const titulo = req.body.titulo
+  const data = req.body.data
+  const mensagem = req.body.mensagem
+  const submit = req.body.submit
+
+  if(submit == "cadastrar"){
+
+    const msg = await Avisos.editar({titulo,data,mensagem}, id)
+    
+    if (msg.tipo = "sucesso") {
+    
+      res.redirect('/avisos')
+  
+    } else {
+      res.render('formulario_avisos', {msg})
+    }  
+  }
+
+  else if(submit == "cancelar"){
+    res.redirect('/avisos')
+  }
+ 
+})
+
+
+
 
 module.exports = router
