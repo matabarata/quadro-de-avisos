@@ -2,8 +2,9 @@ const router = require('express').Router()
 
 const Avisos = require('./avisos')
 
-router.get("/", (req, res) =>{
-  res.send("Página Inicial")
+router.get("/", async (req, res) =>{
+  const avisos = await Avisos.selecionarTodos()
+  res.render('index', {avisos})
 })
 
 router.get("/avisos", async (req, res) =>{

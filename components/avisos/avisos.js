@@ -24,7 +24,7 @@ function salvar(aviso) {
  * mensagem de erro
  */
 function selecionarTodos(){
-  return db.select('*').from('avisos')
+  return db.select('*').from('avisos').orderBy('data', 'asc')
     .then(avisos => {return avisos})
     .catch(erro => {
       return { tipo: "erro", corpo: "Erro: " + erro }

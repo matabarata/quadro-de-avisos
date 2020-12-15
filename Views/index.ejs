@@ -1,0 +1,57 @@
+<!-- Chama o head do outro arquivo qeu está em partials -->
+<%- include('./partials/head') %>
+
+<body>
+
+  <%- include ('./partials/navbar') %>
+
+  <div class="container">
+
+    <% avisos.forEach(aviso => { %>
+      
+      <div class="card shadow mt-4">
+
+        <div class="card-header bg-purple text-white d-flex align-items-center justify-content-between">
+          
+          <h2>
+            <span class="material-icons">
+              sms_failed
+            </span>
+            
+            <%= aviso.titulo %>
+          </h2>
+  
+          <h3 class="lead"><%= moment(aviso.data).format('DD/MM/YYYY') %></h3>
+        
+        </div>
+  
+        <div class="card-body p-5">
+  
+          <div class="d-flex align-items-center">
+  
+            <img src="img/profile.jpg" class="img rounded-circle" height="75">
+            <div class="ml-2">
+              <div class="font-weight-bold">Professor Fulano</div>
+              <div class="text-secondary"> <%= moment(aviso.data).fromNow() %> </div>
+            </div>
+  
+          </div>
+  
+          <div class="mt-4">
+            <p>
+              <%= aviso.mensagem %>
+            <p>
+          </div>
+  
+        </div>
+  
+      </div>
+    
+    <% }) %>
+
+  </div>
+  <!-- Inclui os scripts do bootstrap que estão em outro arquivo no partials -->
+      <%- include('./partials/scripts_import') %>
+</body>
+
+</html>

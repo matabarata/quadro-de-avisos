@@ -4,6 +4,7 @@
 const express = require('express')
 //importando body-parser
 const bodyParser = require('body-parser')
+const moment = require('moment')
 
 //------------------------------------------------------------//
 
@@ -21,7 +22,8 @@ app.use(express.static('public'))
 //---------------------------------------------------------//
 
 //configurando o moment
-app.locals.moment = require('moment')
+moment.locale("pt-br")
+app.locals.moment = moment
 
 //---------------------------------------------------------//
 
